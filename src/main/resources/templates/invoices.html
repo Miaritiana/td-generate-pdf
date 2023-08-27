@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Title</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            margin-bottom: 50px;
+        }
+
+        .image {
+            float: left;
+            width: 30%; /* Adjust as needed */
+        }
+
+        h1 {
+            text-align: center
+        }
+
+        .information {
+            margin-left: 35%; /* Adjust to leave space between image and info */
+        }
+
+        .salary-details {
+            clear: both;
+            margin-bottom: 50%;
+        }
+
+        .salary {
+            margin-left: 5%;
+        }
+
+        /* Clearfix for salary-details */
+        .salary-details::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .footer {
+            overflow: hidden; /* Clear floats */
+        }
+
+        .footer-column {
+            float: left;
+            width: 33.33%; /* Set the width of each column to 33.33% for a three-column layout */
+            padding: 20px; /* Add padding for spacing */
+            box-sizing: border-box; /* Include padding in the width calculation */
+        }
+
+        .logo {
+            width: 60%;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="image">
+        <img th:src="${image}"/>
+    </div>
+    <div class="information">
+        <h1>FICHE EMPLOYE</h1>
+        <p th:text="'Numero matricule: ' + ${registrationNumber} "></p>
+        <p th:text="'Nom: ' + ${name} "></p>
+        <p th:text="'Prenoms: ' + ${firstName} "></p>
+        <p th:text="'Age: ' + ${age} + ' ans' "></p>
+        <p th:text="'Date d embauche: ' + ${entranceDate} "></p>
+        <p th:text="'Date de depart: ' + ${departureDate} "></p>
+        <p th:text="'Numero CNAPS: ' + ${cnaps} "></p>
+    </div>
+</div>
+<div class="salary-details">
+    <b>Information sur le salaire</b>
+    <p th:text="'Salaire brute actuel: '+${salary}+ ' Ariary/mois'" class="salary"></p>
+</div>
+<hr/>
+<div class="footer">
+    <div class="footer-column">
+        <img th:src="${companyLogo}" alt="Company Logo" class="logo"/>
+    </div>
+    <div class="footer-column">
+        <p th:text="${companyName}"></p>
+        <p th:text="'NIF: ' + ${companyNif}"></p>
+        <p th:text="'STAT: ' + ${companyStat}"></p>
+    </div>
+    <div class="footer-column">
+        <p th:text="'Address: ' + ${companyAddress}"></p>
+        <p>Telephones:</p>
+        <ul class="list-unstyled" th:each="phone : ${companyPhones}">
+            <li th:text="${phone.value}"></li>
+        </ul>
+        <p th:text="'Email: ' + ${companyEmail}"></p>
+    </div>
+</div>
+
+</body>
+</html>
